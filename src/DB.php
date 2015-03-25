@@ -228,6 +228,7 @@ class DB {
 			// Always use emulated prepares, since true prepares are much slower on a per-query
 			// basis, since they require a round trip to the server
 			self::$pdo_connections[$cache_key]->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
+			self::$pdo_connection[$cache_key]->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
 			foreach ((array) $db_config['pdo_options'] as $opt => $value) {
 				self::$pdo_connections[$cache_key]->setAttribute($opt, $value);
 			}
